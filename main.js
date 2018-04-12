@@ -1,4 +1,4 @@
-let baseURL = "https://hidden-waters-39451.herokuapp.com";
+let baseURL = "https://limitless-depths-74239.herokuapp.com";
 
 checkTextBoxes = (title, body) => {
   if (title.length < 1 || body.length < 1) {
