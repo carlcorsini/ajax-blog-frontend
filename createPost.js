@@ -1,8 +1,8 @@
-createPost = (title, body) => {
+createPost = (title, content) => {
   axios
     .post(`${baseURL}/blog`, {
       title,
-      body
+      content
     })
     .then(response => {
       alert("Post created!");
