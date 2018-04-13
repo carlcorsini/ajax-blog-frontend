@@ -5,7 +5,6 @@ createPost = (title, content) => {
       content
     })
     .then(response => {
-      alert("Post created!");
-      window.location.reload();
-    });
-};
+      window.location.replace('index.html')
+    })
+}
