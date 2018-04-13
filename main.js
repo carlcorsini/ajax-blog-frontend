@@ -1,36 +1,36 @@
-let baseURL = "https://limitless-depths-74239.herokuapp.com";
+let baseURL = 'https://hidden-waters-39451.herokuapp.com'
 
 checkTextBoxes = (title, body) => {
   if (title.length < 1 || body.length < 1) {
-    errors.style.display = "block";
-    errors.innerHTML = "no name or title entered";
+    errors.style.display = 'block'
+    errors.innerHTML = 'no name or title entered'
   }
-};
+}
 
-document.addEventListener("DOMContentLoaded", event => {
-  let listGroup = document.querySelector("#list-group");
-  let postTitle = document.querySelector("#post-title");
-  let postBody = document.querySelector("#post-body");
-  let viewPost = document.querySelector("#view-post");
-  let view = document.querySelector("#view");
-  let errors = document.querySelector("#errors");
+document.addEventListener('DOMContentLoaded', event => {
+  let listGroup = document.querySelector('#list-group')
+  let postTitle = document.querySelector('#post-title')
+  let postBody = document.querySelector('#post-body')
+  let viewPost = document.querySelector('#view-post')
+  let view = document.querySelector('#view')
+  let errors = document.querySelector('#errors')
   axios.get(`${baseURL}/blog`).then(response => {
-    let resultArray = response.data.result;
+    let resultArray = response.data.result
     resultArray.forEach(a => {
-      $("#list-group-item").detach();
+      $('#list-group-item').detach()
       $(listGroup).append(`
       <a href="#/blog/${a.id}" data-postid="${
         a.id
       }" class="list-group-item list-group-item-action">
         ${a.title}
-      </a>`);
-    });
-    let listGroupItems = document.querySelectorAll(".list-group-item");
+      </a>`)
+    })
+    let listGroupItems = document.querySelectorAll('.list-group-item')
 
     listGroupItems.forEach(a => {
-      a.addEventListener("click", event => {
-        $("#view-post").detach();
-        $("#post-form").remove();
+      a.addEventListener('click', event => {
+        $('#view-post').detach()
+        $('#post-form').remove()
         axios.get(`${baseURL}/blog/${a.dataset.postid}`).then(response => {
           $(view).append(
             `
@@ -53,10 +53,10 @@ document.addEventListener("DOMContentLoaded", event => {
                 </ul>
               </aside>
             </section>`
-          );
-          $("#edit-post").click(() => {
-            $("#post-form").remove();
-            $("#view-post").detach();
+          )
+          $('#edit-post').click(() => {
+            $('#post-form').remove()
+            $('#view-post').detach()
             $(view).append(`
               <form id="post-form" action="/posts/">
               <div class="form-group">
@@ -73,28 +73,28 @@ document.addEventListener("DOMContentLoaded", event => {
               </div>
               <button id="update-button" type="button" class="btn btn-info btn-large">Update Post</button>
               </form>
-              `);
+              `)
 
-            $("#update-button").click(() => {
-              let editTitle = document.querySelector("#edit-post-title").value;
-              let editContent = document.querySelector("#edit-post-body").value;
-              updatePost(editTitle, editContent, a.dataset.postid);
-            });
-          });
+            $('#update-button').click(() => {
+              let editTitle = document.querySelector('#edit-post-title').value
+              let editContent = document.querySelector('#edit-post-body').value
+              updatePost(editTitle, editContent, a.dataset.postid)
+            })
+          })
 
-          $("#delete-post").click(() => {
-            deletePost(a.dataset.postid);
-          });
-        });
-      });
-    });
-  });
+          $('#delete-post').click(() => {
+            deletePost(a.dataset.postid)
+          })
+        })
+      })
+    })
+  })
 
   // create form
-  let createPostDiv = document.querySelector("#create-post-button");
+  let createPostDiv = document.querySelector('#create-post-button')
   $(createPostDiv).click(event => {
-    $("#post-form").remove();
-    $("#view-post").detach();
+    $('#post-form').remove()
+    $('#view-post').detach()
     $(view).append(`
       <form id="post-form" action="/posts/">
       <div class="form-group">
@@ -107,13 +107,13 @@ document.addEventListener("DOMContentLoaded", event => {
       </div>
       <button id="submit-button" type="button" class="btn btn-info btn-large">Create New Post</button>
     </form>
-      `);
+      `)
 
-    $("#submit-button").click(() => {
-      let newPostTitle = document.querySelector("#new-post-title").value;
-      let newPostBody = document.querySelector("#new-post-body").value;
+    $('#submit-button').click(() => {
+      let newPostTitle = document.querySelector('#new-post-title').value
+      let newPostBody = document.querySelector('#new-post-body').value
       checkTextBoxes(newPostTitle, newPostBody),
-        createPost(newPostTitle, newPostBody);
-    });
-  });
-});
+        createPost(newPostTitle, newPostBody)
+    })
+  })
+})
