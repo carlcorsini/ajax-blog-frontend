@@ -5,7 +5,6 @@ updatePost = (editTitle, editContent, id) => {
       editContent
     })
     .then(response => {
-      alert("Post updated!");
-      window.location.reload();
-    });
-};
+      window.location.reload()
+    })
+}

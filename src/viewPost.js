@@ -11,5 +11,5 @@ viewPost = (view, title, content) => {
   </div>
   <button id="update-button" type="button" class="btn btn-info btn-large">Update Post</button>
   </form>
-  `);
-};
+  `)
+}
