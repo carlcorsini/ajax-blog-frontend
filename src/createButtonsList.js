@@ -9,8 +9,12 @@ createButtonsList = resultArray => {
       </a>`)
   })
   let listGroupItems = document.querySelectorAll('.list-group-item')
-  listGroupItems.forEach(a => {
+  listGroupItems.forEach((a, idx) => {
     a.addEventListener('click', event => {
+      listGroupItems.forEach(a => {
+        a.classList.remove('active')
+      })
+      a.classList.add('active')
       let almostId = event.target.href.split('/blog/')
       let id = almostId[1]
       fillPostTitleAndBody(view, id)
